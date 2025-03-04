@@ -12,9 +12,12 @@ function uA = intruderControl1v1(sD, xA, nu, perimeter)
 sL = leftBreachingPoint(xA, nu, perimeter);
 sR = rightBreachingPoint(xA, nu, perimeter);
 
-if determineRegion1v1(sD, xA, nu, perimeter)
-    uA = nu*(sL-xA)/abs(sL-xA);
+[gamma_sL,~] = pointOnPerimeter(sL,perimeter);
+[gamma_sR,~] = pointOnPerimeter(sR,perimeter);
+
+if (true == determineRegion1v1(sD, xA, nu, perimeter))
+    uA = nu * (gamma_sL-xA)/norm(gamma_sL-xA);
 else
-    uA = nu*(sR-xA)/abs(sR-xA);
+    uA = nu*(gamma_sR-xA)/norm(gamma_sR-xA);
 end
 

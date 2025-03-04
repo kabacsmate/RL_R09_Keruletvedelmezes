@@ -12,5 +12,29 @@ function [res,J] = isInRD(sD, xA, nu, perimeter)
 % J: A támadó és védő 1-1 elleni játéka esetén az optimális stratégiák
 % melletti játék értéke (mérési útmutató (2.7) összefüggés).
 
-res = 0;
-J = 0;
+sL = leftBreachingPoint(xA, nu, perimeter);
+sR = rightBreachingPoint(xA, nu, perimeter);
+
+is_in_Left = determineRegion1v1(sD, xA, nu, perimeter);
+
+s_DL = arcLen(sD, sL, perimeter);
+[gamma_sL,~] = pointOnPerimeter(sL,perimeter);
+s_RD = arcLen(sR, sD, perimeter);
+[gamma_sR,~] = pointOnPerimeter(sR,perimeter);
+
+JL_star = s_DL - (norm(gamma_sL - xA))/(nu);
+JR_star = s_RD - (norm(xA - gamma_sR))/(nu);
+
+if is_in_Left
+    J = JL_star;
+else
+    J = JR_star;
+end
+
+if 0 < J
+    res = true;
+else
+    res = false;
+end
+
+

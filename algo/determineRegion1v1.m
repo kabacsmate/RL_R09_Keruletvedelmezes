@@ -18,15 +18,15 @@ s_DL = arcLen(sD, sL, perimeter);
 s_RD = arcLen(sR, sD, perimeter);
 [gamma_sR,~] = pointOnPerimeter(sR,perimeter);
 
-JL_star = s_DL - (norm(gamma_sL, xA))/(nu);
-JR_star = s_RD - (norm(xA, gamma_sR))/(nu);
+JL_star = s_DL - (norm(gamma_sL - xA))/(nu);
+JR_star = s_RD - (norm(xA - gamma_sR))/(nu);
 
 sD_opp = opposite(sD,perimeter);
-SL = [sD, SD_opp];
-SR = [sD_opp, SD];
+SL = [sD, sD_opp];
+SR = [sD_opp, sD];
 
-cond1_in = isin(sL,SL,closed);
-cond2_in = isin(sR,SR,closed);
+cond1_in = isin(sL,SL,[1 1]);
+cond2_in = isin(sR,SR,[1 1]);
 
 if (cond1_in && cond2_in && (JL_star > JR_star)) || ...
     (cond1_in && ~cond2_in) || ...

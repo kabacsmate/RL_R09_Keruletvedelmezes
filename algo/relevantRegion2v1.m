@@ -17,6 +17,16 @@ function isInD1D2 = relevantRegion2v1(sD1,sD2,xA,nu,perimeter)
 % A védett terület határának hosszát a perimeter(end).CumSum/2 utasítással
 % érhetjük el.
 
-isinD1 = determineRegion1v1();
-isinD2 = determineRegion1v1();
-isInD1D2 = 0;
+is_in_Left1 = defenderControl1v1(sD1, xA, nu, perimeter);
+is_in_Left2 = defenderControl1v1(sD2, xA, nu, perimeter);
+
+s_D1D2 = arcLen(sD1, sD2, perimeter);
+L = perimeter(end).CumSum;
+
+if (round(s_D1D2, 3) < round(L/2, 3))
+    isInD1D2 = ((is_in_Left1) && (~is_in_Left2));
+else
+    isInD1D2 = ((is_in_Left1) || (~is_in_Left2));
+end
+
+
