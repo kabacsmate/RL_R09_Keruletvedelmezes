@@ -1,4 +1,4 @@
-function wD = defenderControl1v1(sD, xA, nu, perimeter)
+function uA = intruderControl1v1(sD, xA, nu, perimeter)
 % INPUT
 % sD: A védett terület határát leíró függvény paraméter, mely az adott védő
 % pozícióját jelöli.
@@ -7,12 +7,11 @@ function wD = defenderControl1v1(sD, xA, nu, perimeter)
 % perimeter: A védett területet leíró struktúra.
 
 % OUTPUT
-% wD: A védekező beavatkozó jele, mely a kerület menti sebesség. Pozitív
-% előjel esetén ccw, negatív előjel esetén cw mozgást eredményez.
+% uA: A támadó beavatkozó jele, mely egy sebességvektor.
 
-if determineRegion1v1(sD, xA, nu, perimeter)
-    wD = 1;
+if determineRegion1v1
+    uA = nu*-xA/;
 else
-    wD = -1;
+    uA = nu*xA;
 end
 
