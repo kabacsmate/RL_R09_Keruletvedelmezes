@@ -13,7 +13,7 @@ function uA = intruderControl2v1(sD1,sD2,xA,nu,perimeter)
 
 sL = leftBreachingPoint(xA, nu, perimeter);
 sR = rightBreachingPoint(xA, nu, perimeter);
-smid = middlePointOnPerimeter(s1, s2, perimeter);
+smid = middlePointOnPerimeter(sD1, sD2, perimeter);
 
 [gamma_sL,~] = pointOnPerimeter(sL,perimeter);
 [gamma_sR,~] = pointOnPerimeter(sR,perimeter);
@@ -29,19 +29,19 @@ else
     sDj = sD1;
 end
 
-Sd = [sDi, Smid];
+Sd = [sDi, smid];
 closed = [1,0];
 
-in_Ri = isin(perimeter,Sd,closed);
+in_Ri = isin(sL,Sd,closed);
 
-Sd =[Smid,sDj];
+Sd =[smid,sDj];
 closed =  [0,1];
-in_Rj = isin(perimeter,Sd,closed);
+in_Rj = isin(sR,Sd,closed);
 
 if in_Ri
-    uA = nu*(gamma_sL-xA)/normal(gamma_sL-xA);
+    uA = nu*(gamma_sL-xA)/norm(gamma_sL-xA);
 elseif in_Rj
-    uA = nu*(gamma_sR-xA)/normal(gamma_sR-xA);
+    uA = nu*(gamma_sR-xA)/norm(gamma_sR-xA);
 else
-    uA = nu*(gamma_smid-xA)/normal(gamma_smid-xA);
+    uA = nu*(gamma_smid-xA)/norm(gamma_smid-xA);
 end
