@@ -17,7 +17,7 @@ smid = middlePointOnPerimeter(s1, s2, perimeter);
 
 [gamma_sL,~] = pointOnPerimeter(sL,perimeter);
 [gamma_sR,~] = pointOnPerimeter(sR,perimeter);
-[gamma_smid,~] = pointOnPerimeter(smid,perimeter);
+
 
 
 is_in_D1D2 = relevantRegion2v1(sD1,sD2,xA,nu,perimeter);

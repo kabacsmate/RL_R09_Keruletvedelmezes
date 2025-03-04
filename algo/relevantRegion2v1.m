@@ -17,4 +17,6 @@ function isInD1D2 = relevantRegion2v1(sD1,sD2,xA,nu,perimeter)
 % A védett terület határának hosszát a perimeter(end).CumSum/2 utasítással
 % érhetjük el.
 
+isinD1 = determineRegion1v1();
+isinD2 = determineRegion1v1();
 isInD1D2 = 0;
