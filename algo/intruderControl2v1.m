@@ -29,10 +29,18 @@ else
     sDj = sD1;
 end
 
+Sd = [sDi, Smid];
+closed = [1,0];
 
-if 
+in_Ri = isin(perimeter,Sd,closed);
+
+Sd =[Smid,sDj];
+closed =  [0,1];
+in_Rj = isin(perimeter,Sd,closed);
+
+if in_Ri
     uA = nu*(gamma_sL-xA)/normal(gamma_sL-xA);
-elseif
+elseif in_Rj
     uA = nu*(gamma_sR-xA)/normal(gamma_sR-xA);
 else
     uA = nu*(gamma_smid-xA)/normal(gamma_smid-xA);
