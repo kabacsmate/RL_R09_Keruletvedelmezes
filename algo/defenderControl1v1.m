@@ -10,4 +10,9 @@ function wD = defenderControl1v1(sD, xA, nu, perimeter)
 % wD: A védekező beavatkozó jele, mely a kerület menti sebesség. Pozitív
 % előjel esetén ccw, negatív előjel esetén cw mozgást eredményez.
 
-wD = 0;
+if determineRegion1v1(sD, xA, nu, perimeter)
+    wD = 1;
+else
+    wD = -1;
+end
+
